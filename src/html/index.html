@@ -2,12 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="default stylesheet" href="../css/default.css">
+    <link rel="default-stylesheet" href="../css/default.css">
     <title>New Hope</title>
 </head>
 <body>
   <img src="???" alt="Street view of establishment.">
-  <h1>Test</h1>
+  <h1>New Hope</h1>
   <p>Testing for output.</p>
+  <div class="subheader">
+      <div class="container flex">
+          <div class="subheadings">
+              <h2>Verse of the Day:</h2>
+              <h3 id="viewing"><span id="verse"></span></h3>
+          </div>
+      </div>
+  </div>
+  <main class="container">
+      <div id="verse-content" class="verse-container"></div>
+  </main>
+  <script src="http://cdn.scripture.api.bible/fums/fumsv2.min.js"></script>
+  <script src="../js/verse.js"></script>
 </body>
 </html>
