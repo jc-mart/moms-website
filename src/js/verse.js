@@ -24,7 +24,9 @@ async function scrapeWebsite() {
             const content = $('p').eq(i).text();
             // If there is content in the element, store in array
             if (content) {
-                paragraphs.push(content);
+                console.log(content);
+                const cleaned = content.replace(/\s+/g, ' ').trim();
+                paragraphs.push(cleaned);
             // Otherwise if there is no content, exit the loop
             } else {
                 break;
