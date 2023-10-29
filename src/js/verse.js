@@ -1,68 +1,50 @@
-// Allows access to the verse API.
-const API_KEY = '210f7a3689451c5a88d5f8a040413e86'; // TODO create account and paste API key here.
-// Retrieves the element in the webpage where the verse will be inserted.
-const verse = document.querySelector('#verse-content');
-// Retrieves the element in the webpage where the verse information will be inserted.
-const verseRef = document.querySelector('#verse');
-// Uses a specific bible version.
-const BIBLE_ID = '61fd76eafa1577c2-02'; // TODO ensure that there is also a spanish version
-// List of verses.
-const VERSES = [ // TODO ensure that there is access to a wider array of verses.
-    `JER.29.11`,
-    `PSA.23`,
-    `1COR.4.4-8`,
-    `PHP.4.13`,
-    `JHN.3.16`,
-    `ROM.8.28`,
-    `ISA.41.10`,
-    `PSA.46.1`,
-    `GAL.5.22-23`,
-    `HEB.11.1`,
-    `2TI.1.7`,
-    `1COR.10.13`,
-    `PRO.22.6`,
-    `ISA.40.31`,
-    `JOS.1.9`,
-    `HEB.12.2`,
-    `MAT.11.28`,
-    `ROM.10.9-10`,
-    `PHP.2.3-4`,
-    `MAT.5.43-44`,
-];
-// Gets the day number, stays constant during the day, and so will the verse.
-const verseIndex = Math.floor(Math.random() * VERSES.length);
-// Retrieves verse from list.
-const verseID = VERSES[verseIndex];
+// Get dependencies
+const axios = require('axios');
+const cheerio = require('cheerio');
 
-// Function updates HTML with verse retrieved from the API.
-function getResults(verseID) {
-    return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.withCredentials = false;
+// Target website
+const URL = 'https://www.bible.com/verse-of-the-day';
 
-        xhr.addEventListener(`readystatechange`, function () {
-            if (this.readyState === this.DONE) {
-                const { data, meta } = JSON.parse(this.responseText);
+async function scrapeWebsite() {
+    // Attempt to access and extract webpage information
+    try {
+        // Get access to the target webpage
+        const response = await axios.get(URL);
+        // Gather webpage information
+        const html = response.data;
+        // Load webpage information to cheerio for parsing
+        const $ = cheerio.load(html);
 
-                _BAPI.t(meta.fumsId);
-                resolve(data);
+        // Array to store paragraph elements
+        const paragraphs = [];
+
+        // Extract paragraph elements using cheerio
+        //$('p').each((index, element) => {
+        //    // Store in array
+        //    paragraphs.push($(element).text());
+        //});
+        for (let i = 0; i < 3; i++) {
+            const content = $('p').eq(i).text();
+            if (content) {
+                paragraphs.push(content);
+            } else {
+                break;
             }
-        });
+        }
 
-        xhr.open(
-            `GET`,
-            `https://api.scripture.api.bible/v1/bibles/${BIBLE_ID}/search?query=${verseID}`
-        );
-        xhr.setRequestHeader(`api-key`, API_KEY);
-
-        xhr.onerror = () => reject(xhr.statusText);
-
-        xhr.send();
-    });
+        // Return findings for further parsing
+        return paragraphs;
+    // Log if target webpage could not be reached
+    } catch(err) {
+        console.log('An error was encountered while attempting to scrape the verse.\nError: ' + err);
+    }
 }
 
-getResults(verseID).then((data) => {
-    const passage = data.passages[0];
-    verseRef.innerHTML = `<span><i>${passage.reference}input is being passed on</i></span>`;
-    verse.innerHTML = `<div class="text eb-container">${passage.content}</div>`;
-});
+// Testing for correctness
+scrapeWebsite()
+    .then(paragraphs => {
+        console.log('Extracted Paragraphs: ', paragraphs);
+    })
+    .catch(error => {
+        console.log(error.message);
+    });
