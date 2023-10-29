@@ -18,15 +18,14 @@ async function scrapeWebsite() {
         // Array to store paragraph elements
         const paragraphs = [];
 
-        // Extract paragraph elements using cheerio
-        //$('p').each((index, element) => {
-        //    // Store in array
-        //    paragraphs.push($(element).text());
-        //});
+        // Get first three paragraph elements containing verse information
         for (let i = 0; i < 3; i++) {
+            // Hold current paragraph element
             const content = $('p').eq(i).text();
+            // If there is content in the element, store in array
             if (content) {
                 paragraphs.push(content);
+            // Otherwise if there is no content, exit the loop
             } else {
                 break;
             }
