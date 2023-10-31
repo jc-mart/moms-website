@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <link rel="default-stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="/moms-website/src/css/default.css">
     <title>New Hope</title>
 </head>
+
 <body>
-  <img src="???" alt="Street view of establishment.">
-  <h1>New Hope</h1>
-  <p>Testing for output.</p>
-  <div class="subheader">
-      <div class="container flex">
-          <div class="subheadings">
-              <h2>Verse of the Day:</h2>
-              <h3 id="viewing"><span id="verse"></span></h3>
-          </div>
-      </div>
-  </div>
-  <main class="container">
-      <div id="verse-content" class="verse-container"></div>
-  </main>
-  <script src="http://cdn.scripture.api.bible/fums/fumsv2.min.js"></script>
-  <script src="../js/verse.js"></script>
+    <section id="header">
+        <img src="???" alt="Street view of establishment.">
+        <h1>New Hope</h1>
+        <div id="nav-bar"></div>
+    </section>
+
+    <section id="verse-of-the-day">
+        <h2>Verse of the Day</h2>
+        <div id="verse-date">Date goes here.</div>
+        <div id="verse-citation">Verse citation goes here.</div>
+        <div id="verse-content">Verse content goes here.</div>
+    </section>
+
+    <section id="fb-live">
+        <h2>Livestream</h2>
+    </section>
+
+    <section id="events">
+        <h2>Events</h2>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!--script src="../js/verse.js"></script-->
+    <script src="../js/nav.js"></script>
 </body>
 </html>
