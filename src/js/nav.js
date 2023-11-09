@@ -1,3 +1,3 @@
 $(function() {
-    $("#nav-bar").load("/moms-website/src/html/nav.html");
+    $("#nav-bar").load("../html/nav.html");
 });
