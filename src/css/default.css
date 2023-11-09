@@ -2,6 +2,12 @@ img {
     width: 100%;
     height: auto;
 }
+h2 {
+    font-size: 50px;
+}
+h3 {
+    font-size: 25px;
+}
 nav {
     background-color: yellow;
     overflow: hidden;
@@ -21,6 +27,9 @@ nav a:hover {
 .default {
     margin: 0 25%;
 }
+.default p {
+    font-size: 25px;
+}
 .homepage-banner {
     position: relative;
     display: inline-block;
@@ -37,6 +46,7 @@ nav a:hover {
     top: 220px;
     left: 30px;
     color: white;
+    font-size: 30px;
 }
 .homepage-banner img {
     display: block;
