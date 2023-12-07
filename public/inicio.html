@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./default.css">
+    <link rel="icon" href="./img/cropped-COG-Logo-32x32.png">
+    <title>Inicio | New Hope</title>
+</head>
+
+<body>
+
+
+    <header class="homepage-banner">
+        <div class="banner-content">
+            <h1 class="name">Nueva Esperanza</h1>
+            <p class="subtitle">Iglesia de Dios</p>
+        </div>
+    </header>
+
+
+    <div id="nav-bar"></div>
+
+    <div id="homepage-content" class="default">
+        <section id="verse-of-the-day">
+            <h2>Versículo del día</h2>
+            <div id="verse-date">
+                <h3>November 9, 2023</h3>
+            </div>
+            <div id="verse-content">
+                <p>So let us come boldly to the throne of our gracious God.
+                    There we will receive his mercy, and we will find grace to help us when we need
+                    it most.
+                </p>
+            </div>
+            <div id="verse-citation">
+                <h3>Hebrews 4:16 (NLT)</h3>
+            </div>
+        </section>
+
+        <section id="fb-live">
+            <h2>Transmisión en vivo</h2>
+            <div id="livestream"></div>
+        </section>
+
+        <section id="visit-us">
+            <h2>Visítanos</h2>
+            <div id="map"></div>
+            <p>Estamos ubicados en 3048 S Central Park Ave, Chicago, IL 60623</p>
+            <h3>Horario de servicio</h3>
+            <p>Servicio dominical comienza a las 10:00 a.m.</p>
+            <p>Estudio bíblico del miércoles por la noche comienza a las 7:30 p.m.</p>
+        </section>
+
+        <section id="events">
+            <h2>Anuncios</h2>
+            <div id="events-container">
+                <p>
+                    Ver lo que está por venir en la iglesia y en la comunidad.
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <div id="footer"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        const language = 'es';
+    </script>
+    <script src="./update-verse.js"></script>
+    <script src="./common-es.js"></script>
+    <script src="./livestream.js"></script>
+    <script>
+        const limit = 2;
+    </script>
+    <script src="./events-es.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-AoxAaqqSA0jeocwQmYI_WfQs0kI3OP4&libraries=places&callback=initMap"
+        async defer></script>
+    <script src="./maps.js"></script>
+</body>
+
+</html>

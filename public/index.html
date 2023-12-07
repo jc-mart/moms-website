@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./default.css">
+    <link rel="icon" href="./img/cropped-COG-Logo-32x32.png">
+    <title>Home | New Hope</title>
+</head>
+
+<body>
+
+
+    <header class="homepage-banner">
+        <div class="banner-content">
+            <h1 class="name">New Hope</h1>
+            <p class="subtitle">Church of God</p>
+        </div>
+    </header>
+
+
+    <div id="nav-bar"></div>
+
+    <div id="homepage-content" class="default">
+        <section id="verse-of-the-day">
+            <h2>Verse of the Day</h2>
+            <div id="verse-date">
+                <h3>November 9, 2023</h3>
+            </div>
+            <div id="verse-content">
+                <p>So let us come boldly to the throne of our gracious God.
+                    There we will receive his mercy, and we will find grace to help us when we need
+                    it most.
+                </p>
+            </div>
+            <div id="verse-citation">
+                <h3>Hebrews 4:16 (NLT)</h3>
+            </div>
+        </section>
+
+        <section id="fb-live">
+            <h2>Livestream</h2>
+            <div id="livestream"></div>
+        </section>
+
+        <section id="visit-us">
+            <h2>Visit Us</h2>
+            <div id="map"></div>
+            <p>We are located at 3048 S Central Park Ave, Chicago, IL 60623</p>
+            <h3>Service Hours</h3>
+            <p>Sunday service begins at 10:00am</p>
+            <p>Wednesday night bible study begins at 7:30pm</p>
+        </section>
+
+        <section id="events">
+            <h2>Announcements</h2>
+            <div id="events-container">
+                <p>
+                    See what's upcoming in the church and around the community.
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <div id="footer"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        const language = 'en';
+    </script>
+    <script src="./update-verse.js"></script>
+    <script src="./common.js"></script>
+    <script src="./livestream.js"></script>
+    <script>
+        const limit = 2;
+    </script>
+    <script src="./events.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-AoxAaqqSA0jeocwQmYI_WfQs0kI3OP4&libraries=places&callback=initMap"
+        async defer></script>
+    <script src="./maps.js"></script>
+</body>
+
+</html>
