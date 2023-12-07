@@ -1,17 +1,17 @@
 const express = require('express');
 const path = require('path');
-const mysql = require('mysql');
+const {MongoClient, ServerApiVersion} = require('mongodb');
 const { scrapeWebsite } = require('./public/verse');
 const app = express();
-
 const port = 3000;
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'juan',
-    password: 'password',
-    database: 'church',
-    port: '8889',
-});
+const mongoUri = 'mongodb+srv://church-test:churchtest123@church-announcements.cpowek6.mongodb.net/?retryWrites=true&w=majority';
+const client = new MongoClient(mongoUri, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    }
+  });
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -25,29 +25,34 @@ app.get('/api/verse-of-the-day-es', async (req, res) => {
     res.json(verseData);
 });
 
-app.get('/events', (req, res) => {
-    const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
+app.get('/events', async (req, res) => {
+    try {
+        await client.connect();
+        const db = client.db('church');
+        const collection = db.collection('events');
 
-    let query = 'SELECT * FROM events WHERE start_datetime > ?';
+        const currentDate = new Date();
+        const dateFilter = { datetime: { $gte: currentDate.toISOString() } };
 
-    const limit = req.query.limit;
+        let query = collection.find(dateFilter);
+        query = query.sort({ datetime: 1 });
 
-    if (limit && !isNaN(parseInt(limit))) {
-        query += ' ORDER BY start_datetime ASC LIMIT ?';
-    } else {
-        query += ' ORDER BY start_datetime ASC';
-    }
+        const limit = req.query.limit;
 
-    const values = limit ? [currentDate, parseInt(limit)] : [currentDate];
-
-    db.query(query, values, (error, results) => {
-        if (error) {
-            console.error('Error retrieving events: ', error);
-            res.status(500).json({ error: 'Internal Server Error' });
-        } else {
-            res.json(results);
+        if (limit && !isNaN(parseInt(limit))) {
+            query = query.limit(parseInt(limit));
         }
-    });
+
+        const eventsCursor = await query;
+        const events = await eventsCursor.toArray();
+
+        res.json(events);
+    } catch (error) {
+        console.error('Error retrieving events: ', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    } finally {
+        await client.close();
+    }
 });
 
 app.get('*', (req, res) => {

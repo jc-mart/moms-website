@@ -9,11 +9,12 @@ fetch(`/events?limit=${limit}`)
 
 function displayEvents(events) {
     events.forEach(event => {
+        const eventDate = new Date(event.datetime);
         const eventElement = document.createElement('div');
         eventElement.innerHTML = `
                 <hr>
                 <h3>${event.title}</h3>
-                <p>${formatDateTime(event.start_datetime)}</p>
+                <p>${formatDateTime(eventDate)}</p>
                 <p style="font-size:20px">${event.description}</p>
                 <p style="font-size:smaller">${event.ministry}</p>
             `;
