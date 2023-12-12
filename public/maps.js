@@ -1,4 +1,4 @@
-const loc = {lat: 41.83752894412787, lng:-87.71478380428482};
+const loc = { lat: 41.83752894412787, lng: -87.71478380428482 };
 
 function initMap() {
     const map = new google.maps.Map(document.getElementById('map'), {

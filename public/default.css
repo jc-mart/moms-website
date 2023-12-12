@@ -59,7 +59,7 @@ h3 {
 .navbar a:hover {
     text-decoration: underline;
 }
-/* Add styles for the fixed navigation bar */
+
 .navbar.fixed {
     position: fixed;
     top: 0;
@@ -99,9 +99,7 @@ h3 {
     justify-content: space-between;
     align-items: center;
     background-color: #777777;
-    /* Change the background color as needed */
     color: #fff;
-    /* Change the text color as needed */
     padding: 10px 20px;
 }
 
@@ -111,7 +109,6 @@ h3 {
 
 .right-section img {
     width: 100px;
-    /* Adjust the width of the logo as needed */
     height: auto;
 }
 

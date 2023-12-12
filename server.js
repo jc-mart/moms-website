@@ -1,17 +1,17 @@
 const express = require('express');
 const path = require('path');
-const {MongoClient, ServerApiVersion} = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const { scrapeWebsite } = require('./public/verse');
 const app = express();
 const port = 3000;
 const mongoUri = 'mongodb+srv://church-test:churchtest123@church-announcements.cpowek6.mongodb.net/?retryWrites=true&w=majority';
 const client = new MongoClient(mongoUri, {
     serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
     }
-  });
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 

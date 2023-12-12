@@ -1,7 +1,7 @@
 async function updateVerseOfTheDay() {
     try {
         let date;
-        const options = {year: 'numeric', month: 'long', day: 'numeric'};
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
         if (language == 'en') {
             response = await fetch('/api/verse-of-the-day');
             date = new Date().toLocaleDateString('en-US', options);
