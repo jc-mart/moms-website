@@ -6,7 +6,7 @@ async function updateVerseOfTheDay() {
             response = await fetch('/api/verse-of-the-day');
             date = new Date().toLocaleDateString('en-US', options);
         } else {
-            response = await fetch('api/verse-of-the-day-es');
+            response = await fetch('/api/verse-of-the-day-es');
             date = new Date().toLocaleDateString('es-US', options);
         }
         const verseData = await response.json();

@@ -1,9 +1,9 @@
 $(function () {
-  $("#nav-bar").load("./nav.html");
+  $("#nav-bar").load("../../en/nav.html");
 });
 
 $(function () {
-  $("#footer").load("./footer.html");
+  $("#footer").load("../../en/footer.html");
 });
 
 window.addEventListener('scroll', function () {

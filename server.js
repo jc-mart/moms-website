@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const { scrapeWebsite } = require('./public/verse');
+const { scrapeWebsite } = require('./public/js/common/verse');
 const app = express();
 const port = 3000;
 const mongoUri = 'mongodb+srv://church-test:churchtest123@church-announcements.cpowek6.mongodb.net/?retryWrites=true&w=majority';
@@ -56,7 +56,7 @@ app.get('/events', async (req, res) => {
 });
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'en', 'index.html'));
 });
 
 app.listen(port, () => {
