@@ -1,38 +1,39 @@
-// js/verseScraper.js
-const axios = require('axios');
-const cheerio = require('cheerio');
+const axios = require('axios')
+const cheerio = require('cheerio')
+const pretty = require('pretty')
 
 const EN_URL = 'https://www.bible.com/verse-of-the-day';
 const SP_URL = 'https://www.bible.com/es/verse-of-the-day';
 
-const scrapeWebsite = async (url) => {
+const scrapeWebsite = async(url) => {
     try {
         const response = await axios.get(url);
         const html = response.data;
         const $ = cheerio.load(html);
 
-        const paragraphs = [];
+        const date = $('p').eq(0).text();
+        const citation = $('p').eq(1).text();
+        const content = $('a').eq(8).text();
 
-        for (let i = 0; i < 3; i++) {
-            const content = $('p').eq(i).text();
-            if (content) {
-                const cleaned = content.replace(/\s+/g, ' ').trim();
-                paragraphs.push(cleaned);
-            } else {
-                break;
-            }
-        }
+        // console.log(date);
+        // console.log(content);
+        // console.log(citation);
 
         return {
-            date: paragraphs[0],
-            content: paragraphs[1],
-            citation: paragraphs[2]
+            date: date,
+            content: content,
+            citation: citation
         };
 
-    } catch (err) {
-        console.log('An error was encountered while attempting to scrape the verse.\nError: ' + err);
+    } catch(err) {
+        console.log('Error encountered while scraping the webpage.\nError: ' + err);
         throw err;
     }
-};
+}
 
 module.exports = { scrapeWebsite };
+
+/** Testing */
+
+// scrapeWebsite(EN_URL);
+// scrapeWebsite(SP_URL);
